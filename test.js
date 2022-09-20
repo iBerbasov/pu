@@ -1,14 +1,9 @@
+const button = document.querySelector('#button');
+button.addEventListener('click', clearParags);
 
-function challenge (number) {
-    if(String(number).length <= 1) {
-        // console.log(number + '!');
-        return number;
-    } else {
-        let arr = [...String(number)];
-        const sum = arr.reduce((partialSum, a ) => partialSum + Number(a), 0);
-        // console.log(sum);
-        console.log('inside ' + sum);
-        return challenge(sum);
-    }
+function clearParags() {
+    let parags = document.querySelectorAll('.parag');
+    parags.forEach(element => {
+        element.textContent = "Cleared text";
+    });
 }
-console.log(challenge(249857232342345428978));
