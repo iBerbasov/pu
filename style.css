@@ -1,0 +1,22 @@
+div, input {
+    display: inline-block ;
+  }
+  #inp {
+    outline: none;
+  }
+.wrong {
+    box-shadow: 1px 1px 2px 0 red;
+    outline: none;
+  }
+.right {
+    box-shadow: 1px 1px 2px 0 green;
+    outline: none;
+  }
+  .hint {
+    width: 20%;
+    color: gray;
+    font-style: italic;
+    font-size: 12px;
+  }
+ 
+  
