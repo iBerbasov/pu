@@ -1,22 +1,36 @@
-div, input {
-    display: inline-block ;
-  }
-  #inp {
+div,
+input {
+    display: inline-block;
+}
+
+#inp {
     outline: none;
-  }
+}
+
 .wrong {
     box-shadow: 1px 1px 2px 0 red;
     outline: none;
-  }
+}
+
 .right {
     box-shadow: 1px 1px 2px 0 green;
     outline: none;
-  }
-  .hint {
+}
+
+.hint {
     width: 20%;
     color: gray;
     font-style: italic;
     font-size: 12px;
-  }
- 
-  
+}
+
+ul {
+    padding: 30px;
+    border: 1px solid red;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    border: 1px dashed black;
+}

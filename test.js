@@ -1,19 +1,14 @@
-const input = document.getElementById('inp');
-const button = document.getElementById('btn');
-const hint = document.querySelector('.hint');
+let elem = document.querySelector('button');
 
-input.addEventListener('input', function() {
-    console.log(this.value.length);
-    this.classList = '';
-    if(this.value.length <= 5) {
-        hint.textContent = (5 - this.value.length) + " chars left";
-        this.classList.add('right');
-    } else {
-        hint.textContent = (this.value.length - 5) + " chars exceeded";
-        this.classList.add('wrong');
+elem.addEventListener('click', function(event) {
+	console.log(event.code);
+    if(event.altKey) {
+        console.log('alt down');
     }
-})
-
-button.addEventListener('click', () => {
-    input.focus();
-})
+    if(event.shiftKey) {
+        console.log('shift down');
+    }
+    if(event.ctrlKey) {
+        console.log('ctrl down');
+    }
+});
