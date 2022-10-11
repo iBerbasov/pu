@@ -1,13 +1,8 @@
-div, ul, li {
-	padding: 20px;
+input.params {
+	width: 40px;
 }
-
-div {
-	border: 1px solid red;
-}
-ul {
-	border: 1px solid orange;
-}
-li {
+td { 
+	width:30px; 
+	height:30px;
 	border: 1px solid green;
 }
