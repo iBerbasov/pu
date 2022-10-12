@@ -1,8 +1,18 @@
 input.params {
 	width: 40px;
 }
+input.cell-edit {
+	width:30px; 
+	height:30px;
+}
 td { 
 	width:30px; 
 	height:30px;
 	border: 1px solid green;
+	text-align: center; 
+    vertical-align: middle;
+	/* background-color: none; */
+}
+td.green {
+	background-color: green;
 }

@@ -1,50 +1,65 @@
-const widthInput = document.querySelector('#width');
-const heightInput = document.querySelector('#height');
-const btn = document.querySelector('#create-table');
-const inputsBox = document.querySelector('#inputs-wrapper');
+const inpWidth = document.querySelectorAll(".params")[0];
+const inpHeight = document.querySelectorAll(".params")[1];
+const createBtn = document.querySelector('#create-btn');
 const table = document.querySelector('#table');
 
-let employees = [
-	{name: 'Igor', age: 30, salary: 400},
-	{name: 'Misha', age: 31, salary: 500},
-	{name: 'Katya', age: 32, salary: 600},
-];
+createBtn.addEventListener('click', () => {
+    let width = inpWidth.value;
+    let heigth = inpHeight.value;
 
-let header1 = document.createElement('th');
-header1.textContent="Name";
-let header2 = document.createElement('th');
-header2.textContent="Age";
-let header3 = document.createElement('th');
-header3.textContent="Salary";
+    //clear table div
+    table.textContent = '';
 
-table.appendChild(header1);
-table.appendChild(header2);
-table.appendChild(header3);
+    //create rows 
+    for(let w = 0; w < width; w++) {
+        const newRow = document.createElement('tr');
+        //create columns in row
+        for(let h = 0; h < heigth; h++) {
+            const newCell = document.createElement('td');
+            newRow.appendChild(newCell);
+        }
+        table.appendChild(newRow);
+    }
+    //create event listener for edditing cells
+    table.addEventListener('mouseover', (event) => {
+        // editCell(event);
+        // setColorToCell(event)
+        setColorToRow(event);
+    });
+})
 
-for(let emp of employees) {
-    // console.log(emp.name);
-    // console.log(emp.age);
-    // console.log(emp.salary);
-    const newRow = document.createElement('tr');
+function editCell(event) {
+    if(event.target.tagName == "TD") {
+        const currentCell = event.target;
+        //create input and get value from targeted cell
+        const input = document.createElement('input');
+        input.value = currentCell.textContent;
+        input.classList.add('cell-edit');
+        //clear current cell and add input
+        currentCell.textContent = '';
+        currentCell.appendChild(input);
+        //set input text to cell by bluring from input
+        input.addEventListener('blur', () => {
+            currentCell.textContent = input.value;
 
-    const name = document.createElement('td');
-    name.textContent = emp.name;
-    const age = document.createElement('td');
-    age.textContent = emp.age;
-    const salary = document.createElement('td');
-    salary.textContent = emp.salary;
-
-    newRow.appendChild(name);
-    newRow.appendChild(age);
-    newRow.appendChild(salary);
-
-    table.appendChild(newRow);
-
+        })
+        input.focus();
+    }
 }
 
-table.addEventListener('click', (event) => {
-    if(event.target.tagName == 'TD') {
-        alert(event.target.textContent)
+function setColorToCell(event) {
+    if(event.target.tagName == "TD") {
+        const currentCell = event.target;
+        currentCell.classList.toggle('green');
     }
-});
-
+}
+function setColorToRow(event) {
+    if(event.target.tagName == "TD") {
+        const currentRow = event.target.parentNode;
+        // console.log(currentRow);
+        for(let cell of currentRow.children) {
+            // console.log(cell);
+            cell.classList.toggle('green');
+        }
+    }
+}
