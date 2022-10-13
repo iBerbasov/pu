@@ -1,65 +1,22 @@
-const inpWidth = document.querySelectorAll(".params")[0];
-const inpHeight = document.querySelectorAll(".params")[1];
-const createBtn = document.querySelector('#create-btn');
-const table = document.querySelector('#table');
+const div = document.querySelector('#elem');
 
-createBtn.addEventListener('click', () => {
-    let width = inpWidth.value;
-    let heigth = inpHeight.value;
+let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10 , 11 , 'sds']];
+let table = createTableByArr(arr);
 
-    //clear table div
-    table.textContent = '';
+div.appendChild(table);
 
-    //create rows 
-    for(let w = 0; w < width; w++) {
+function createTableByArr(array) {
+    const table = document.createElement('table');
+
+    for(let row of array) {
         const newRow = document.createElement('tr');
-        //create columns in row
-        for(let h = 0; h < heigth; h++) {
+        for(let cellData of row) {
             const newCell = document.createElement('td');
+            newCell.textContent = cellData;
             newRow.appendChild(newCell);
         }
         table.appendChild(newRow);
     }
-    //create event listener for edditing cells
-    table.addEventListener('mouseover', (event) => {
-        // editCell(event);
-        // setColorToCell(event)
-        setColorToRow(event);
-    });
-})
 
-function editCell(event) {
-    if(event.target.tagName == "TD") {
-        const currentCell = event.target;
-        //create input and get value from targeted cell
-        const input = document.createElement('input');
-        input.value = currentCell.textContent;
-        input.classList.add('cell-edit');
-        //clear current cell and add input
-        currentCell.textContent = '';
-        currentCell.appendChild(input);
-        //set input text to cell by bluring from input
-        input.addEventListener('blur', () => {
-            currentCell.textContent = input.value;
-
-        })
-        input.focus();
-    }
-}
-
-function setColorToCell(event) {
-    if(event.target.tagName == "TD") {
-        const currentCell = event.target;
-        currentCell.classList.toggle('green');
-    }
-}
-function setColorToRow(event) {
-    if(event.target.tagName == "TD") {
-        const currentRow = event.target.parentNode;
-        // console.log(currentRow);
-        for(let cell of currentRow.children) {
-            // console.log(cell);
-            cell.classList.toggle('green');
-        }
-    }
+    return table;
 }
