@@ -1,22 +1,36 @@
-const div = document.querySelector('#elem');
+const inputs = document.querySelectorAll('.data-input');
+const getBtn = document.querySelector('#get-users');
+const addBtn = document.querySelector('#add-user');
 
-let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10 , 11 , 'sds']];
-let table = createTableByArr(arr);
+getBtn.addEventListener('click', () => {
+    let users = localStorage.getItem('users')
+    let arr = JSON.parse(users);
+    arr.forEach(element => {
+        console.log(`Name: ${element.name} Surname: ${element.surname}`);
+    });
+})
 
-div.appendChild(table);
+addBtn.addEventListener('click', () => {
+    let newUser = getNewUserArr();
+    localStorage.setItem('users', addNewUserToJsonString(newUser))
+})
 
-function createTableByArr(array) {
-    const table = document.createElement('table');
-
-    for(let row of array) {
-        const newRow = document.createElement('tr');
-        for(let cellData of row) {
-            const newCell = document.createElement('td');
-            newCell.textContent = cellData;
-            newRow.appendChild(newCell);
-        }
-        table.appendChild(newRow);
-    }
-
-    return table;
+function addNewUserToJsonString(userArr) {
+    let users = localStorage.getItem('users')
+    let arr = JSON.parse(users);
+    arr.push({
+        "surname":userArr[0],
+        "name":userArr[1],
+        "age":userArr[2],
+    })
+    return JSON.stringify(arr);
 }
+
+function getNewUserArr() {
+    let surname = inputs[0].value;
+    let name = inputs[1].value;
+    let age = inputs[2].value;
+
+    return [surname, name, age];
+}
+
