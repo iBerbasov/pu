@@ -1,0 +1,1 @@
+(()=>{const e=document.querySelector("#get-users"),o=document.querySelector("#add-user"),n=document.querySelector("#date-inp");e.addEventListener("click",(()=>{console.log(n.value),console.log("new version")})),o.addEventListener("click",(()=>{let e=new Date;console.log(e),n.value=e}))})();
